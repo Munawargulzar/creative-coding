@@ -1,39 +1,37 @@
-let carX = 50;
-let carY = 200;
-let carSpeed = 2;
+let alienX = 200;
+let alienY = 200;
 
 function setup() {
   createCanvas(400, 400);
 }
 
 function draw() {
-  background(220);
+  background(0);
+
+  fill(150, 200, 255); 
+  ellipse(alienX, alienY, 100, 150); 
   
-  fill(0, 128, 255);
-  beginShape();
-  vertex(carX + 20, carY);
-  vertex(carX + 20, carY - 50);
-  vertex(carX + 30, carY - 60);
-  vertex(carX + 70, carY - 60);
-  vertex(carX + 80, carY - 50);
-  vertex(carX + 80, carY);
-  endShape(CLOSE);
+  fill(100, 150, 200); 
+  rect(alienX - 40, alienY - 50, 30, 100, 20); 
+  rect(alienX + 10, alienY - 50, 30, 100, 20);
   
-  fill(51);
-  rect(carX + 30, carY - 50, 40, 20);
-  rect(carX + 40, carY - 55, 20, 5);
+  fill(100, 150, 200); 
+  rect(alienX - 30, alienY + 40, 20, 80, 20); 
+  rect(alienX + 10, alienY + 40, 20, 80, 20);
   
-  fill(0);
-  ellipse(carX + 30, carY, 20, 20);
-  ellipse(carX + 70, carY, 20, 20);
   
-  fill(255, 255, 0);
-  ellipse(carX + 10, carY - 5, 10, 10);
-  ellipse(carX + 90, carY - 5, 10, 10);
+  fill(150, 200, 255); 
+  ellipse(alienX, alienY - 90, 80, 80); 
   
-  carX += carSpeed;
+  fill(0); 
+  ellipse(alienX - 20, alienY - 100, 20, 20); 
+  ellipse(alienX + 20, alienY - 100, 20, 20); 
   
-  if (carX > width + 50) {
-    carX = -50;
-  }
+  fill(255); 
+  ellipse(alienX - 20, alienY - 100, 10, 10); 
+  ellipse(alienX + 20, alienY - 100, 10, 10); 
+  
+  noFill(); 
+  stroke(255); 
+  arc(alienX, alienY - 80, 40, 20, 0, PI);
 }
