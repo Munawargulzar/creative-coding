@@ -1,27 +1,21 @@
+var img, x,y ;//declaring the variables
+function preload()
+{
+img = loadImage("green tree.jpg");
+}
 
-var numFrames = 6 ; //total images/total frames
-var frame = 0 // always 0
-var images = new Array(numFrames);
-//Array - stores multiple data/images
-
-function preload(){
-      images[0] = loadImage("rabit 1.png");
-      images[1] = loadImage("rabit 2.png");
-      images[2] = loadImage("rabit 3.png");
-      images[3] = loadImage("rabit 4.png");
-      images[4] = loadImage("rabit 5.png");
-      images[5] = loadImage("rabit 6.png");
-      
- }
 function setup() {
-  createCanvas(600, 400);
-  frameRate(20); //speed of the flying bird
+  createCanvas(400, 400);
   background(0);
+  noStroke();
 }
 
 function draw() {
-  background(225);
-  frame++; //increment - add 1 value
-  if (frame == numFrames) frame = 0; //if 0 will be equal to 6, then it will go back again to 0
-  image(images[frame], mouseX - 75, mouseY - 100); // mouse interaction
+ 
+ 
+  x = random(width); // randomly place a dot in x position
+  y = random(height); // randomly place a dot in y position
+ var c = img.get(x,y); // getting the position of the mouse
+  fill(c[0], c[1], c[2], 100); //the color depends on the dots , 50 transparency value
+  triangle(x, y - 30,x - 30,y + 30,x + 30, y  + 30);
 }
