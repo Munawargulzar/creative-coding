@@ -1,57 +1,32 @@
-let splash = [];
-let fontSize = 40;
+let data = [];
 
 function setup() {
   createCanvas(800, 400);
-  textAlign(CENTER, CENTER);
-  textSize(fontSize);
+  generateData();
+}
+
+function generateData() {
+  data = [];
   for (let i = 0; i < 100; i++) {
-    let x = random(width);
-    let y = random(height);
-    if (y > height / 2 - fontSize / 2 && y < height / 2 + fontSize / 2) {
-      y += random(-50, 50);
-    }
-    splash.push(new Splash(x, y));
+    data.push({
+      x: random(width),
+      y: random(height),
+      size: random(10, 30),
+      color: color(random(255), random(255), random(255), 150)
+    });
   }
 }
 
 function draw() {
-  background(0, 50, 150); 
-  // Draw water splash
-  for (let s of splash) {
-    s.move();
-    s.display();
-    s.checkEdge();
-  }
+  background(220);
   
-  fill(255);
-  text('Bath Spa University', width / 2, height / 2);
+  for (let i = 0; i < data.length; i++) {
+    let p = data[i];
+    fill(p.color);
+    rect(p.x, p.y, p.size, height - p.y);
+  }
 }
 
-class Splash {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-    this.xSpeed = random(-5, 5);
-    this.ySpeed = random(-10, -5);
-    this.size = random(10, 30);
-    this.color = color(255, 255, 255, 150);
-  }
-
-  move() {
-    this.x += this.xSpeed;
-    this.y += this.ySpeed;
-  }
-
-  checkEdge() {
-    if (this.x > width || this.x < 0 || this.y > height || this.y < 0) {
-      this.x = random(width);
-      this.y = random(height / 2, height);
-    }
-  }
-
-  display() {
-    fill(this.color);
-    ellipse(this.x, this.y, this.size, this.size);
-  }
+function mousePressed() {
+  generateData();
 }
