@@ -1,32 +1,26 @@
-let data = [];
+let song;
+let fft;
 
-function setup() {
-  createCanvas(800, 400);
-  generateData();
+function preload() {
+  song = loadSound('song.mp3');
 }
 
-function generateData() {
-  data = [];
-  for (let i = 0; i < 100; i++) {
-    data.push({
-      x: random(width),
-      y: random(height),
-      size: random(10, 30),
-      color: color(random(255), random(255), random(255), 150)
-    });
-  }
+function setup() {
+  createCanvas(400, 400);
+  song.play();
+  fft = new p5.FFT();
 }
 
 function draw() {
-  background(220);
-  
-  for (let i = 0; i < data.length; i++) {
-    let p = data[i];
-    fill(p.color);
-    rect(p.x, p.y, p.size, height - p.y);
-  }
-}
+  background(0);
 
-function mousePressed() {
-  generateData();
+  let spectrum = fft.analyze();
+  noStroke();
+  fill(255);
+
+  for (let i = 0; i < spectrum.length; i++) {
+    let x = map(i, 0, spectrum.length, 0, width);
+    let h = -height + map(spectrum[i], 0, 255, height, 0);
+    rect(x, height, width / spectrum.length, h);
+  }
 }
