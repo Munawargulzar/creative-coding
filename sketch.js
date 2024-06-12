@@ -1,17 +1,39 @@
+let carX = 50;
+let carY = 200;
+let carSpeed = 2;
+
 function setup() {
-  createCanvas(600, 200);
+  createCanvas(400, 400);
+}
+
+function draw() {
   background(220);
   
-  textSize(36);
-  textAlign(CENTER, TOP);
-  textStyle(BOLDITALIC);
+  fill(0, 128, 255);
+  beginShape();
+  vertex(carX + 20, carY);
+  vertex(carX + 20, carY - 50);
+  vertex(carX + 30, carY - 60);
+  vertex(carX + 70, carY - 60);
+  vertex(carX + 80, carY - 50);
+  vertex(carX + 80, carY);
+  endShape(CLOSE);
+  
+  fill(51);
+  rect(carX + 30, carY - 50, 40, 20);
+  rect(carX + 40, carY - 55, 20, 5);
+  
   fill(0);
-  text('Hello', width/2, 20);
+  ellipse(carX + 30, carY, 20, 20);
+  ellipse(carX + 70, carY, 20, 20);
   
-  textSize(24);
-  textStyle(NORMAL);
-  text('my name is munawar', width/2, height/2);
+  fill(255, 255, 0);
+  ellipse(carX + 10, carY - 5, 10, 10);
+  ellipse(carX + 90, carY - 5, 10, 10);
   
-  textSize(20);
-  text('i want to be a python developer', width/2, height/2 + 40);
+  carX += carSpeed;
+  
+  if (carX > width + 50) {
+    carX = -50;
+  }
 }
