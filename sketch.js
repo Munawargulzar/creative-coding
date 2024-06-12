@@ -1,16 +1,20 @@
-var img;
-function preload() {
-img = loadImage("nature.jpg"); /// preload the image to make sure that its loaded before setup
-  }
+var img, x,y ;//declaring the variables
+function preload(){
+  img = loadImage("london.jpg");
+}
 
 function setup() {
   createCanvas(400, 400);
-  background(0);// set the background to black
+  background(0);
+  noStroke();
 }
 
 function draw() {
   background(0);
-  image(img,0,0);
-  var v = map(mouseX, 0, width, 0 , 70);// mark the map postion mouseX between 0 to 70 for the posterize effect
-  filter(POSTERIZE, v);
+  x = mouseX;
+  y = mouseY;
+  image( img, 0 , 0);// to show the full image
+  var c = get(x,y); // getting the position ofthe mouse
+  fill(c); //the color depends on the position of the mouse
+  ellipse(x, y, 100, 100);
 }
